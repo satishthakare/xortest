@@ -2,7 +2,7 @@
 //node {
    // This is to demo github action	
 //   def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
- //  def mvn = tool (name: 'maven3', type: 'maven') + '/bin/mvn'
+ 
    stage('SCM Checkout'){
     // Clone repo
 	//git branch: 'master', 
@@ -22,7 +22,7 @@
 	
    stage('Compile Package'){
 	   // Build using maven
-	   def mvnHome = tool name: 'Maven 3.1.1', type: 'maven'
+	   def mvn = tool (name: 'maven3', type: 'maven') + '/bin/mvn'
 	   sh " ${mvnHome}/bin/mvn package "
    }
    
