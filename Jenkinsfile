@@ -20,10 +20,10 @@
 //   }
    
 	
-   stage('Mvn Package'){
+   stage('Compile Package'){
 	   // Build using maven
-	   def mvn = tool name: 'Maven 3.6.3', type: 'maven'
-	   sh "${mvn}/bin/mvn package "
+	   def mvnHome = tool name: 'Maven 3.6.3', type: 'maven'
+	   sh "${mvnHome}/bin/mvn package "
    }
    
 //   stage('deploy-dev'){
