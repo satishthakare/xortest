@@ -1,7 +1,7 @@
 
 node {
    // This is to demo github action	
-//   def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
+      def sonarUrl = 'sonar.host.url=http://10.20.14.81:9000/'
  
    stage('SCM Checkout'){
     // Clone repo
@@ -11,13 +11,13 @@ node {
    
    }
    
-   //stage('Sonar Publish'){
-//	   withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarToken')]) {
-   //     def sonarToken = "sonar.login=${sonarToken}"
-     //   sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarToken}"
-	// }
+   stage('Sonar Publish'){
+	   withCredentials([string(credentialsId: 'sonarqube', variable: 'sonarToken')]) {
+        def sonarToken = "sonar.login=${sonarToken}"
+        sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarToken}"
+	 }
       
-//   }
+    }
    
 	
    stage('Compile Package'){
