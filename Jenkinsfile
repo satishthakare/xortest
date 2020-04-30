@@ -1,5 +1,5 @@
 
-//node {
+node {
    // This is to demo github action	
 //   def sonarUrl = 'sonar.host.url=http://172.31.30.136:9000'
  
@@ -48,5 +48,5 @@
 //DevOps Team""", cc: '', from: '', replyTo: '', subject: "${env.JOB_NAME} Success", to: 'satishthakare0309@gmail.com'
    
 //   }
-//}
+}
 
