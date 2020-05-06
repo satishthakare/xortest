@@ -11,13 +11,19 @@ node {
    
    }
    
-   stage('Sonar Publish'){
-	   withCredentials([string(credentialsId: 'admin', variable: 'sonarToken')]) {
-        def sonarToken = "sonar.login=${sonarToken}"
-        sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarToken}"
-	 }
-      
+    stage('SonarQube Analysis') {
+        def mvnHome =  tool name: 'maven-3', type: 'maven'
+        withSonarQubeEnv('sonar6') { 
+          sh "${mvnHome}/bin/mvn sonar:sonar"
+        }
     }
+	   
+	 //  withCredentials([string(credentialsId: 'admin', variable: 'sonarToken')]) {
+        //def sonarToken = "sonar.login=${sonarToken}"
+        // sh "${mvn} sonar:sonar -D${sonarUrl}  -D${sonarToken}"
+	// }
+      
+ //   }
    
 	
    stage('Compile Package'){
