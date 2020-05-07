@@ -32,19 +32,19 @@ node {
 	   sh " ${mvn} package "
    }
    
-//   stage('deploy-dev'){
-   //    def tomcatDevIp = '172.31.28.172'
-//	   def tomcatHome = '/opt/tomcat8/'
-//   def webApps = tomcatHome+'webapps/'
-//	   def tomcatStart = "${tomcatHome}bin/startup.sh"
-//	   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
+   stage('deploy-dev'){
+     def tomcatDevIp = '10.20.14.183'
+	   def tomcatHome = '/opt/tomcat8/'
+   def webApps = tomcatHome+'webapps/'
+	   def tomcatStart = "${tomcatHome}bin/startup.sh"
+	   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
 	   
-//	   sshagent (credentials: ['tomcat-dev']) {
-//	      sh "scp -o StrictHostKeyChecking=no target/myweb*.war ec2-user@${tomcatDevIp}:${webApps}myweb.war"
-//          sh "ssh ec2-user@${tomcatDevIp} ${tomcatStop}"
-//		  sh "ssh ec2-user@${tomcatDevIp} ${tomcatStart}"
-  //     }
-  // }
+   sshagent (credentials: ['tomcat-dev']) {
+	      sh "scp -o StrictHostKeyChecking=no target/myweb*.war centos@${tomcatDevIp}:${webApps}myweb.war"
+        sh "ssh centos@${tomcatDevIp} ${tomcatStop}"
+		  sh "ssh centos@${tomcatDevIp} ${tomcatStart}"
+      }
+  }
    //stage('Email Notification'){
 	//	mail bcc: '', body: """Hi Team, You build successfully deployed
 	//	                       Job URL : ${env.JOB_URL}
