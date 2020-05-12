@@ -33,16 +33,16 @@ node {
    }
    
    stage('deploy-dev'){
-     def tomcatDevIp = '10.20.14.81'
-	   def tomcatHome = '/opt/tomcat8/'
+     def tomcatDevIp = '10.20.14.183'
+	   def tomcatHome = '/opt/tomcat/'
    def webApps = tomcatHome+'webapps/'
 	   def tomcatStart = "${tomcatHome}bin/startup.sh"
 	   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
 	   
-   sshagent (credentials: ['varun2882']) {
-	      sh "scp -o StrictHostKeyChecking=no target/myweb*.war varun2882@${tomcatDevIp}:${webApps}myweb.war"
-        sh "ssh varun2882@${tomcatDevIp} ${tomcatStop}"
-		  sh "ssh varun2882@${tomcatDevIp} ${tomcatStart}"
+   sshagent (credentials: ['centos']) {
+	      sh "scp -o StrictHostKeyChecking=no target/myweb*.war centos@${tomcatDevIp}:${webApps}myweb.war"
+        sh "ssh centos@${tomcatDevIp} ${tomcatStop}"
+		  sh "ssh centos@${tomcatDevIp} ${tomcatStart}"
       }
   }
    //stage('Email Notification'){
