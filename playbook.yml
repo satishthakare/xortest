@@ -9,7 +9,7 @@
      - name: Create Project
        command: oc login https://10.20.14.183:8443/ -u system -p admin
      - name: Changing webapp project
-       command: oc project XORTEST
+       command: oc project xortest
      - name: New app creating
        command: oc new-app --name=mywebapp https://github.com/satishthakare/xortest.git --strategy=docker
      - name: Exposing Service
