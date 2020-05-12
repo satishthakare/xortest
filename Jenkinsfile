@@ -40,7 +40,8 @@ node {
 	   def tomcatStop = "${tomcatHome}bin/shutdown.sh"
 	   
    sshagent (credentials: ['centos']) {
-	      sh "scp -o StrictHostKeyChecking=no target/myweb*.war centos@${tomcatDevIp}:${webApps}myweb.war"
+	      cat remote_script.sh | sshpass -p centos ssh -T -o StrictHostKeyChecking=no centos@10.20.14.183:${webApps}myweb.war"
+	      // sh "scp -o StrictHostKeyChecking=no target/myweb*.war centos@${tomcatDevIp}:${webApps}myweb.war"
         sh "ssh centos@${tomcatDevIp} ${tomcatStop}"
 		  sh "ssh centos@${tomcatDevIp} ${tomcatStart}"
       }
