@@ -47,11 +47,7 @@
 		    <url>http://10.20.14.81:8081/repository/maven-releases/</url>
 		</repository>
 		
-		<repository>
-		    <id>GitHub</id>
-		    <url>https://github.com/satishthakare/xortest/</url>
-		</repository>
-  	</distributionManagement>
+	</distributionManagement>
 	
 <build>
     <plugins>
